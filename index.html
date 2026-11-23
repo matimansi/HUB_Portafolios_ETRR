@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis Portafolios // Matías Mansilla · ETRR</title>
+  <meta name="description" content="Centro de archivo docente y memorias pedagógicas anuales de la especialidad electrónica en la Escuela Técnica Roberto Rocca.">
+
+  <!-- Tipografías de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Estilos Comunes y Específicos del Hub -->
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/hub.css">
+
+  <!-- Inicialización de Tema -->
+  <script src="./js/theme.js"></script>
+</head>
+<body>
+
+  <!-- =========================================================================
+       CABECERA INSTITUCIONAL Y CONTROL DE TEMA
+       ========================================================================= -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="./index.html" class="brand-wrapper" title="Ir al inicio del Hub">
+        <img src="./assets/img/Logo ETRR.jpg" alt="Logo Escuela Técnica Roberto Rocca" class="brand-logo-img">
+        <div class="brand-text">
+          <div class="brand-title">
+            <span>MATÍAS MANSILLA</span>
+            <span class="brand-tag">TEL · 1824</span>
+          </div>
+          <div class="brand-subtitle">ETRR · Especialidad Electrónica // Hub Docente</div>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <!-- Interruptor Electrónico Claro / Oscuro -->
+        <div class="theme-switch-box" title="Alternar entre Modo Oscuro (Osciloscopio) y Modo Claro (Datasheet)">
+          <span class="theme-switch-label">MODO</span>
+          <label class="switch-control" for="theme-toggle-hub">
+            <input type="checkbox" id="theme-toggle-hub" data-theme-toggle aria-label="Cambiar tema de color">
+            <span class="switch-slider">
+              <!-- Luna (Oscuro) -->
+              <svg class="switch-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+              <!-- Sol (Claro) -->
+              <svg class="switch-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       HERO PRINCIPAL CON ESTÉTICA GLASSMORPHISM
+       ========================================================================= -->
+  <main>
+    <section class="hub-hero">
+      <div class="hub-hero-card scroll-reveal">
+        <div class="hub-hero-header">
+          <div class="hub-telemetry-strip">
+            <span class="tech-badge orange">
+              <span class="status-dot"></span>
+              SISTEMA DE ARCHIVO DOCENTE
+            </span>
+            <span class="tech-badge gray">ESCUELA TÉCNICA ROBERTO ROCCA</span>
+          </div>
+
+          <h1 class="hub-title">
+            Mis Portafolios
+          </h1>
+
+          <p class="hub-subtitle">
+            Compilación reflexiva y sistemática de la mediación del aprendizaje, planeación pedagógica, co-enseñanza y evidencias de taller en las cátedras de la especialidad electrónica de la Escuela Técnica Roberto Rocca.
+          </p>
+        </div>
+
+        <!-- Ficha de Cátedras, Parejas Pedagógicas y Equipo de Trabajo -->
+        <div class="teacher-profile-grid">
+          <div class="teacher-meta-item">
+            <span class="teacher-meta-label">DOCENTE RESPONSABLE</span>
+            <span class="teacher-meta-val">Matías Mansilla</span>
+            <span class="tech-badge" style="width: fit-content; margin-top: 0.25rem;">
+              Técnico Electrónico
+            </span>
+          </div>
+
+          <div class="teacher-meta-item">
+            <span class="teacher-meta-label">MATERIAS DICTADAS (2026)</span>
+            <div class="subject-pills">
+              <span class="subject-pill" title="Aplicaciones de Electrónica Analógica">AEA · 4to TEL</span>
+              <span class="subject-pill" title="Aplicaciones de Electrónica Digital">AED · 4to, 5to y 6to TEL</span>
+              <span class="subject-pill" title="Proyecto y Diseño Electrónico">PyDE · 7mo TEL</span>
+              <span class="subject-pill" title="Ciencia, Tecnología, Ingeniería y Matemáticas">STEM · 5to año</span>
+            </div>
+          </div>
+
+          <div class="teacher-meta-item">
+            <span class="teacher-meta-label">PAREJAS PEDAGÓGICAS Y EQUIPO DE TRABAJO</span>
+            <span class="teacher-meta-val" style="font-size: 0.88rem; font-weight: 500; line-height: 1.5;">
+              Emiliano Marinucci, Dario Jose Pena, Romina Petrolini, Nicolas Costa, Laureano Bolzan, Valeria Ortiz Etchepare y todo el equipo de Tecnoclubes.
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         REGISTRO DE PORTAFOLIOS POR CICLO LECTIVO (ORDEN CRONOLÓGICO 2 COLUMNAS)
+         ========================================================================= -->
+    <section class="portfolios-section">
+      <div class="section-heading-box scroll-reveal">
+        <div>
+          <div class="tech-badge gray" style="margin-bottom: 0.5rem;">DIRECTORIO ANUAL</div>
+          <h2 class="section-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            Memorias Pedagógicas Ciclo a Ciclo
+          </h2>
+        </div>
+        <span class="section-count font-mono">3 CICLOS REGISTRADOS</span>
+      </div>
+
+      <div class="portfolios-grid scroll-reveal-group">
+
+        <!-- ===================================================================
+             CICLO 2025 (PRIMERO EN ORDEN CRONOLÓGICO)
+             =================================================================== -->
+        <article class="portfolio-card card-archived scroll-reveal">
+          <div class="card-top">
+            <div class="card-header-bar">
+              <span class="card-year-badge">2025</span>
+              <span class="tech-badge gray">ARCHIVO DOCUMENTAL</span>
+            </div>
+
+            <h3 class="card-title">Ciclo Lectivo 2025: Primer Registro de Cierre</h3>
+            <p class="card-desc">
+              Memoria documental inicial elaborada tras las primeras experiencias docentes de fin de ciclo. Al incorporarme a mitad de año, constituyó una entrega sintética sin registro fotográfico previo que sirvió como punto de partida para planificar el registro sistemático de 2026.
+            </p>
+
+            <ul class="card-highlights">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>El Retorno al Aula:</strong> Enseñar en la misma técnica donde me gradué como docente a mitad de año.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Cierre de las primeras cátedras y balance inicial de taller.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Documentos originales preservados en repositorio institucional.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card-footer-actions">
+            <a href="./2025/Portfolio%202025%20-%20Matias%20Mansilla.pdf" target="_blank" class="btn btn-outline" style="flex: 1;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              <span>Ver PDF</span>
+            </a>
+            <a href="./2025/Portfolio%202025%20-%20Matias%20Mansilla.docx" class="btn btn-outline" download style="flex: 1;" title="Descargar copia editable">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>DOCX</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- ===================================================================
+             CICLO 2026: EXPERIENCIA INTERACTIVA (SEGUNDO EN ORDEN)
+             =================================================================== -->
+        <article class="portfolio-card card-featured scroll-reveal">
+          <div class="card-top">
+            <div class="card-header-bar">
+              <span class="card-year-badge">2026</span>
+              <span class="tech-badge orange">
+                <span class="status-dot"></span>
+                EXPERIENCIA INTERACTIVA
+              </span>
+            </div>
+
+            <h3 class="card-title">Del Trazado Teórico a la Fabricación Física</h3>
+            <p class="card-desc">
+              Memoria pedagógica narrativa con recolección sistemática de evidencias, co-enseñanza y metacognición docente: oratoria técnica con 4to TEL, extensión comunitaria en Tecnoclubes y CITgrip, desarrollo de PCBs y la muestra MAPE.
+            </p>
+
+            <ul class="card-highlights">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Jornada Tenaris:</strong> Seguridad con 5to año, IA en el trabajo (S. Bortnik) y liderazgo (Los Murciélagos).</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>4to TEL:</strong> Exposiciones orales de Transformadores en auditorio junto a Emiliano Marinucci.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Tecnoclubes:</strong> Talleres socioemocionales y robótica con mBots junto a Laureano Bolzan.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>CITgrip:</strong> Acompañamiento a 5to año con el dispositivo rehabilitador en Escobar.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Fuentes Reguladas:</strong> Desarrollo de PCB de fuentes variables reguladas.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>MAPE:</strong> Muestra de proyectos con 4to año (AEA), 5to año (STEM - Mini Titan) y 7mo año (PyDE).</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card-footer-actions">
+            <a href="./2026/index.html" class="btn btn-accent" style="width: 100%;">
+              <span>Ingresar al Portafolio 2026</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- ===================================================================
+             CICLO 2027: PROYECCIÓN / ROADMAP (TERCERO EN ORDEN)
+             =================================================================== -->
+        <article class="portfolio-card card-upcoming scroll-reveal">
+          <div class="card-top">
+            <div class="card-header-bar">
+              <span class="card-year-badge" style="opacity: 0.65;">2027</span>
+              <span class="tech-badge gray">EN PLANIFICACIÓN</span>
+            </div>
+
+            <h3 class="card-title">Ciclo Lectivo 2027: En proceso...</h3>
+            <p class="card-desc">
+              Lanzamiento: Noviembre 2027
+            </p>
+          </div>
+
+          <div class="card-footer-actions">
+            <button class="btn btn-outline" disabled style="width: 100%; opacity: 0.55; cursor: not-allowed;">
+              <span>Hoja de Ruta en Construcción (2027)</span>
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       PIE DE PÁGINA INSTITUCIONAL
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div>
+          <div style="font-family: var(--font-mono); font-weight: 700; font-size: 0.95rem; color: var(--text-primary);">
+            MATÍAS MANSILLA // DOCENTE TÉCNICO ELECTRÓNICO
+          </div>
+          <div style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.2rem;">
+            Escuela Técnica Roberto Rocca (Campana, Buenos Aires, Argentina)
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+          <span class="tech-badge orange">
+            <span class="status-dot"></span>
+            EJECUTÁNDOSE
+          </span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy;Hub de Portafolios Docentes. Desarrollado con HTML5 / CSS3 / Vanilla JS con ayuda de Google Antigravity y Google Gemini.</div>
+        <div style="color: var(--accent-orange);">SEÑAL ESTABLE // IMPEDANCIA 50Ω // CALIBRADO </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="./js/lightbox.js"></script>
+  <script src="./js/scroll-effects.js"></script>
+</body>
+</html>

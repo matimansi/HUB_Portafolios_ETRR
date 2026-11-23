@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portafolio Ciclo 2026 // Matías Mansilla · ETRR</title>
+  <meta name="description" content="Memoria narrativa interactiva del Ciclo Lectivo 2026. Especialidad Electrónica, Escuela Técnica Roberto Rocca.">
+
+  <!-- Tipografías de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Estilos Comunes y Específicos del Portafolio 2026 -->
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/portfolio.css">
+
+  <!-- Inicialización de Tema -->
+  <script src="../js/theme.js"></script>
+</head>
+<body>
+
+  <!-- =========================================================================
+       CABECERA TÉCNICA Y CONTROL DE TEMA
+       ========================================================================= -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-wrapper" title="Volver al Hub de Portafolios">
+        <img src="../assets/img/Logo ETRR.jpg" alt="Logo ETRR" style="width: 40px; height: 40px; object-fit: contain; border-radius: 6px; background: #FFF; padding: 2px;">
+        <div class="brand-text">
+          <div class="brand-title">
+            <span>MATÍAS MANSILLA</span>
+            <span class="brand-tag">TEL · 1824</span>
+          </div>
+          <div class="brand-subtitle">ETRR · Ciclo Lectivo 2026 // Memoria Pedagógica</div>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <!-- Enlace rápido al Hub -->
+        <a href="../index.html" class="btn btn-outline" style="padding: 0.4rem 0.85rem; font-size: 0.75rem;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span>Hub Principal</span>
+        </a>
+
+        <!-- Interruptor Electrónico Claro / Oscuro -->
+        <div class="theme-switch-box" title="Alternar entre Modo Oscuro (Osciloscopio) y Modo Claro (Datasheet)">
+          <span class="theme-switch-label">MODO</span>
+          <label class="switch-control" for="theme-toggle-2026">
+            <input type="checkbox" id="theme-toggle-2026" data-theme-toggle aria-label="Cambiar tema de color">
+            <span class="switch-slider">
+              <!-- Luna -->
+              <svg class="switch-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+              <!-- Sol -->
+              <svg class="switch-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       ÍNDICE LATERAL CON ONDA SENOIDAL ANIMADA (SVG INTERACTIVO SIN MARCO EXTERIOR)
+       ========================================================================= -->
+  <aside class="sine-nav-aside" id="sine-nav-container" aria-label="Navegación de secciones por onda senoidal">
+    <div class="sine-telemetry-header">
+      <span class="sine-telemetry-title">OSC // CANAL 1</span>
+      <span class="sine-telemetry-sec" id="sine-telemetry-sec">01 // CHARLAS TENARIS</span>
+      <span class="sine-telemetry-phase" id="sine-telemetry-phase">φ: +0°</span>
+    </div>
+
+    <!-- Canvas SVG con trazado senoidal y nodos de PCB -->
+    <svg class="sine-canvas-svg" viewBox="0 0 70 480">
+      <!-- Línea de referencia central (Graticule) -->
+      <line class="sine-graticule" x1="35" y1="0" x2="35" y2="480" />
+
+      <!-- Trazado senoidal de fondo con glow -->
+      <path class="sine-trace-glow" id="sine-wave-glow" d="" />
+      
+      <!-- Trazado senoidal principal sensible al scroll -->
+      <path class="sine-trace" id="sine-wave-path" d="" />
+
+      <!-- Grupo de nodos de soldadura / vías -->
+      <g id="sine-nodes-group"></g>
+    </svg>
+
+    <!-- Barra Dock para visualización móvil -->
+    <div class="sine-mobile-dock" id="sine-mobile-dock">
+      <button class="mobile-nav-btn" id="mobile-nav-prev" aria-label="Sección anterior">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <div class="mobile-nav-sec-badge" id="mobile-nav-sec-badge">01 // CHARLAS TENARIS</div>
+      <button class="mobile-nav-btn" id="mobile-nav-next" aria-label="Siguiente sección">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       CONTENIDO DEL PORTAFOLIO 2026
+       ========================================================================= -->
+  <main class="portfolio-wrapper">
+
+    <!-- Migas de pan de navegación -->
+    <nav class="tech-breadcrumbs">
+      <a href="../index.html">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        </svg>
+        <span>HUB CENTRAL</span>
+      </a>
+      <span class="separator">/</span>
+      <span style="color: var(--accent-orange);">PORTAFOLIO CICLO 2026</span>
+    </nav>
+
+    <!-- =======================================================================
+         BLOQUE INICIAL: TRAYECTORIA DOCENTE Y ALCANCE ACADÉMICO 2026
+         ======================================================================= -->
+    <section class="portfolio-section" id="sec-intro" style="margin-bottom: 4rem;">
+      <div class="section-tag-row scroll-reveal">
+        <span class="tech-badge orange">INICIALIZACIÓN // CICLO 2026</span>
+        <span class="tech-badge gray">V<sub>IN</sub>: IDENTIDAD Y SISTEMATIZACIÓN</span>
+      </div>
+
+      <h1 class="section-main-title scroll-reveal">
+        Memoria Pedagógica
+      </h1>
+
+      <div class="bento-grid scroll-reveal-group">
+        
+        <!-- Ficha Docente Titular (Contexto 2025 -> 2026) -->
+        <div class="bento-card bento-col-7 scroll-reveal">
+          <div>
+            <div class="tech-badge" style="margin-bottom: 0.75rem;">DOCENTE TITULAR</div>
+            <h2 class="bento-card-title">Matías Mansilla · Técnico Electrónico</h2>
+            
+            <p class="bento-card-desc" style="margin-top: 1rem; line-height: 1.7;">
+              En 2025 ingresé como docente a mitad de año, por lo que se me presentaron dificultades para el desarrollo de mi portafolio, lo que resultó en una presentación sin registro fotográfico y que obligó a una entrega sintética sin tiempo para consolidar evidencias.
+            </p>
+            <p class="bento-card-desc" style="margin-top: 0.75rem; line-height: 1.7;">
+              Al conocer de antemano el objetivo pedagógico del portafolio para este ciclo 2026, planifiqué el registro sistemático de evidencias durante todo el año escolar y diseñé esta plataforma web para documentar el proceso de mediación del aprendizaje, la co-enseñanza con mis parejas pedagógicas y la reflexión continua sobre la práctica técnica.
+            </p>
+          </div>
+
+          <!-- Foto Institucional Docente -->
+          <div class="important-media-box" data-lightbox data-src="../assets/img/foto_institucional_matias_mansilla.jpg" data-title="Matías Mansilla" data-caption="Foto institucional docente - Escuela Técnica Roberto Rocca." style="display: block; margin: 1.5rem auto 0 auto; max-width: 320px;">
+            <img src="../assets/img/foto_institucional_matias_mansilla.jpg" alt="Matías Mansilla - Docente Técnico Electrónico">
+            <div class="important-media-caption">
+              <span class="tag">DOCENTE TITULAR</span>
+              <span>Matías Mansilla</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alcance Académico 2026 y Parejas Pedagógicas -->
+        <div class="bento-card bento-col-5 scroll-reveal">
+          <div>
+            <div class="tech-badge gray" style="margin-bottom: 0.75rem;">ALCANCE ACADÉMICO 2026</div>
+            <h2 class="bento-card-title">Materias y Parejas Pedagógicas</h2>
+            
+            <div style="display: flex; flex-direction: column; gap: 0.85rem; margin-top: 1.25rem;">
+              <div style="padding: 0.75rem; background: var(--bg-secondary); border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-orange); font-weight: 700;">AEA · 4to TEL</div>
+                <div style="font-size: 0.82rem; color: var(--text-primary); font-weight: 600;">Aplicaciones de Electrónica Analógica</div>
+                <div style="font-size: 0.75rem; color: var(--accent-blue); margin-top: 0.2rem;">Pareja pedagógica: <strong>Emiliano Marinucci</strong></div>
+              </div>
+
+              <div style="padding: 0.75rem; background: var(--bg-secondary); border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-blue); font-weight: 700;">AED · 4to, 5to y 6to TEL</div>
+                <div style="font-size: 0.82rem; color: var(--text-primary); font-weight: 600;">Aplicaciones de Electrónica Digital</div>
+                <div style="font-size: 0.75rem; color: var(--accent-blue); margin-top: 0.2rem;">Pareja pedagógica: <strong>Dario Jose Pena</strong></div>
+              </div>
+
+              <div style="padding: 0.75rem; background: var(--bg-secondary); border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-green); font-weight: 700;">PyDE · 7mo TEL</div>
+                <div style="font-size: 0.82rem; color: var(--text-primary); font-weight: 600;">Proyecto y Diseño Electrónico</div>
+                <div style="font-size: 0.75rem; color: var(--accent-blue); margin-top: 0.2rem;">Pareja pedagógica: <strong>Ramiro Sagripanti</strong></div>
+              </div>
+
+              <div style="padding: 0.75rem; background: var(--bg-secondary); border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-orange); font-weight: 700;">STEM · 5to año</div>
+                <div style="font-size: 0.82rem; color: var(--text-primary); font-weight: 600;">Intesificación y Profundización</div>
+                <div style="font-size: 0.75rem; color: var(--accent-blue); margin-top: 0.2rem;">Parejas pedagógicas: <strong>Romina Petrolini y Nicolas Costa</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECCIÓN 01: CHARLAS TENARIS
+         ======================================================================= -->
+    <section class="portfolio-section" id="sec-1">
+      <div class="section-tag-row scroll-reveal">
+        <span class="tech-badge orange">NODO 01 // FORMACIÓN Y VINCULACIÓN</span>
+        <span class="tech-badge gray">AUDITORIO TENARIS · CAMPANA</span>
+      </div>
+
+      <h2 class="section-main-title scroll-reveal">
+        Charlas Tenaris: Seguridad, IA y Liderazgo
+      </h2>
+
+      <p class="section-summary-lead scroll-reveal">
+        Jornada integral de formación en el Auditorio Tenaris que abordó la cultura de la seguridad industrial con los estudiantes de 5to año, la transformación del trabajo ante la Inteligencia Artificial y la resiliencia en equipos de alto rendimiento.
+      </p>
+
+      <div class="bento-grid scroll-reveal-group">
+
+        <!-- 1. Seguridad con 5to año (Primero en orden) -->
+        <div class="bento-card bento-col-12 scroll-reveal">
+          <div>
+            <div class="tech-badge orange" style="margin-bottom: 0.75rem;">SEGURIDAD INDUSTRIAL // 5to AÑO</div>
+            <h3 class="bento-card-title">Jornada de Seguridad, Simulacros y Prevención</h3>
+            <p class="bento-card-desc" style="margin-top: 0.75rem; max-width: 900px;">
+              Acompañamiento a los estudiantes de 5to año en la jornada de seguridad en Tenaris. Se trabajaron diferentes items respecto a la seguridad en general desarrollando diferentes actividades: Busqueda de situaciones peligrosas, reflexion sobre la seguridad y exposicion junto al equipo de Bomberos para afianzar la cultura preventiva antes de sus prácticas profesionalizantes.
+            </p>
+          </div>
+
+          <!-- Fotos IMPORTANTE de Seguridad integradas directamente -->
+          <div class="media-grid-3">
+            <div class="important-media-box" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/Auditorio IMPORTANTE.jpg" data-title="Auditorio Tenaris // Jornada de Seguridad con 5to año" data-caption="Apertura y marco conceptual de seguridad industrial en el Auditorio Tenaris.">
+              <img src="../assets/img/Charlas Tenaris/Seguridad con 5to/Auditorio IMPORTANTE.jpg" alt="Auditorio Tenaris Seguridad">
+              <div class="important-media-caption">
+                <span class="tag">AUDITORIO</span>
+                <span>Apertura de Jornada</span>
+              </div>
+            </div>
+
+            <div class="important-media-box" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/Busqueda IMPORTANTE.jpg" data-title="Dinámica de Búsqueda y Rescate // Seguridad 5to año" data-caption="Trabajo en equipo y protocolos de evacuación segura en planta industrial.">
+              <img src="../assets/img/Charlas Tenaris/Seguridad con 5to/Busqueda IMPORTANTE.jpg" alt="Búsqueda y Rescate Seguridad">
+              <div class="important-media-caption">
+                <span class="tag">BÚSQUEDA</span>
+                <span>Protocolo de Evacuación</span>
+              </div>
+            </div>
+          </div>
+
+            <div class="important-media-box" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/Bomberos IMPORTANTE.jpg" data-title="Simulacro con Bomberos // Seguridad 5to año" data-caption="Entrenamiento práctico de control de incendios y brigada de seguridad.">
+              <img src="../assets/img/Charlas Tenaris/Seguridad con 5to/Bomberos IMPORTANTE.jpg" alt="Bomberos Tenaris Seguridad">
+              <div class="important-media-caption">
+                <span class="tag">BOMBEROS</span>
+                <span>Simulacro Práctico</span>
+              </div>
+            </div>
+
+
+          <!-- Galería desplegable con las 19 fotos restantes de Seguridad -->
+          <div class="section-gallery-wrapper">
+            <button class="gallery-toggle-btn" data-gallery-target="gallery-seguridad-5to" data-count-text="19 fotos">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+              <span class="btn-label">Ver galería completa (19 fotos)</span>
+              <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+
+            <div class="gallery-drawer-content" id="gallery-seguridad-5to">
+              <div class="gallery-thumbs-grid">
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_094910172.jpg" data-title="Seguridad 5to - Registro 01"><img src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_094910172.jpg" alt="Seguridad 5to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_094924529.jpg" data-title="Seguridad 5to - Registro 02"><img src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_094924529.jpg" alt="Seguridad 5to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_095341205.jpg" data-title="Seguridad 5to - Registro 03"><img src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_095341205.jpg" alt="Seguridad 5to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_095354910.jpg" data-title="Seguridad 5to - Registro 04"><img src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_095354910.jpg" alt="Seguridad 5to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_100046930.jpg" data-title="Seguridad 5to - Registro 05"><img src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_100046930.jpg" alt="Seguridad 5to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_100056835.jpg" data-title="Seguridad 5to - Registro 06"><img src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_100056835.jpg" alt="Seguridad 5to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_100106489.jpg" data-title="Seguridad 5to - Registro 07"><img src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_100106489.jpg" alt="Seguridad 5to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_100118051.jpg" data-title="Seguridad 5to - Registro 08"><img src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_100118051.jpg" alt="Seguridad 5to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_100212210.jpg" data-title="Seguridad 5to - Registro 09"><img src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_100212210.jpg" alt="Seguridad 5to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_100221905.jpg" data-title="Seguridad 5to - Registro 10"><img src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_100221905.jpg" alt="Seguridad 5to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_100346370.jpg" data-title="Seguridad 5to - Registro 11"><img src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_100346370.jpg" alt="Seguridad 5to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_102112811.jpg" data-title="Seguridad 5to - Registro 12"><img src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_102112811.jpg" alt="Seguridad 5to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_102130995_HDR.jpg" data-title="Seguridad 5to - Registro 13"><img src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_102130995_HDR.jpg" alt="Seguridad 5to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_102145642.jpg" data-title="Seguridad 5to - Registro 14"><img src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_102145642.jpg" alt="Seguridad 5to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_102859137.jpg" data-title="Seguridad 5to - Registro 15"><img src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_102859137.jpg" alt="Seguridad 5to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_102902193.jpg" data-title="Seguridad 5to - Registro 16"><img src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_102902193.jpg" alt="Seguridad 5to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_103207653.jpg" data-title="Seguridad 5to - Registro 17"><img src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_103207653.jpg" alt="Seguridad 5to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_103216536.jpg" data-title="Seguridad 5to - Registro 18"><img src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_103216536.jpg" alt="Seguridad 5to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_103943903.jpg" data-title="Seguridad 5to - Registro 19"><img src="../assets/img/Charlas Tenaris/Seguridad con 5to/IMG_20260424_103943903.jpg" alt="Seguridad 5to"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Sebastián Bortnik -->
+        <div class="bento-card bento-col-6 scroll-reveal">
+          <div>
+            <div class="tech-badge orange" style="margin-bottom: 0.75rem;">SEBASTIÁN BORTNIK</div>
+            <h3 class="bento-card-title">La IA y los Nuevos Desafíos Laborales</h3>
+            <p class="bento-card-desc" style="margin-top: 0.75rem;">
+              Durante la exposición sobre inserción laboral, Sebastián Bortnik reflexionó sobre cómo la inteligencia artificial está reconfigurando el mundo productivo y derribando viejas estructuras de pensamiento impuestas a los adolescentes.
+            </p>
+            <p class="bento-card-desc" style="margin-top: 0.75rem;">
+              Comparto la frase que más me marcó de la charla y que resume el espíritu con el que encaramos las prácticas de laboratorio:
+            </p>
+            
+            <blockquote style="margin: 1.25rem 0; padding: 1rem 1.25rem; background: var(--bg-secondary); border-left: 3px solid var(--accent-orange); border-radius: var(--radius-sm); font-size: 0.92rem; font-style: italic; color: var(--text-primary); line-height: 1.6;">
+              "No debería preocuparte tanto que tu trabajo lo empiece a hacer una inteligencia artificial. Debería preocuparte más que tu trabajo lo empiece a hacer otra persona que use inteligencia artificial para hacer las cosas mejor o más rápido que vos."
+            </blockquote>
+          </div>
+
+          <!-- Foto IMPORTANTE de Bortnik integrada directamente -->
+          <div class="important-media-box" data-lightbox data-src="../assets/img/Charlas Tenaris/Sebastian Bortnik Frase IMPORTANTE.jpg" data-title="Sebastián Bortnik // Auditorio Tenaris" data-caption="Cita sobre Inteligencia Artificial y transformación laboral en el Auditorio Tenaris.">
+            <img src="../assets/img/Charlas Tenaris/Sebastian Bortnik Frase IMPORTANTE.jpg" alt="Sebastián Bortnik Frase">
+            <div class="important-media-caption">
+              <span class="tag">SEBASTIÁN BORTNIK</span>
+              <span>Inteligencia Artificial</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Los Murciélagos (Gonzalo Vilariño) -->
+        <div class="bento-card bento-col-6 scroll-reveal">
+          <div>
+            <div class="tech-badge" style="margin-bottom: 0.75rem;">GONZALO VILARIÑO</div>
+            <div class="tech-badge" style="margin-bottom: 0.75rem;">CONFIANZA CIEGA</div>
+            <h3 class="bento-card-title">Los Murciélagos</h3>
+            
+            <p class="bento-card-desc" style="margin-top: 0.75rem;">
+              En la presente presentación no cuento con fotos propias tomadas durante el evento, ya que estuve muy concentrado escuchando la exposición y viviendo la experiencia que no realice ningun tipo de registro sobre la misma.
+            </p>
+
+            <p class="bento-card-desc" style="margin-top: 0.75rem; line-height: 1.65;">
+              En <em>Confianza Ciega</em>, <a href="https://www.instagram.com/gonzalovilarinio/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-orange); font-weight: 700; text-decoration: underline;">Gonzalo Vilariño</a> propone una experiencia que va mucho más allá de una charla. A través de su historia de vida y una serie de dinámicas inmersivas, invita a los participantes a salir de lo conocido y ponerse, literalmente, en el lugar del otro.
+            </p>
+
+            <p class="bento-card-desc" style="margin-top: 0.75rem; line-height: 1.65;">
+              A continuación, comparto una de sus charlas TED subida a YouTube.
+            </p>
+          </div>
+
+          <!-- Charla TED embebida -->
+          <div style="margin-top: 1.25rem; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-highlight); aspect-ratio: 16/9; background: #000;">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/SiOrA0QqEKE" title="Gonzalo Vilariño - Charla TED Confianza Ciega" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border: 0;"></iframe>
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-top: 0.5rem; text-align: center;">
+            Charla TEDxRíodelaPlata (2015) · Gonzalo Vilariño / Los Murciélagos
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECCIÓN 02: 4to TEL — EXPOSICIONES ORALES EN EL AUDITORIO
+         ======================================================================= -->
+    <section class="portfolio-section" id="sec-2">
+      <div class="section-tag-row scroll-reveal">
+        <span class="tech-badge orange">NODO 02 // ORATORIA TÉCNICA</span>
+        <span class="tech-badge gray">4to TEL · CO-DOCENCIA MARINUCCI Y MANSILLA</span>
+      </div>
+
+      <h2 class="section-main-title scroll-reveal">
+        El Auditorio como Banco de Pruebas: Oratoria en 4to TEL
+      </h2>
+
+      <p class="section-summary-lead scroll-reveal">
+        Junto a mi pareja pedagógica <strong>Emiliano Marinucci</strong>, transformamos la presentación de transformadores en una práctica de oratoria técnica en el auditorio de la escuela, donde estuvieron presentes los estudiantes y nosotros como docentes evaluadores.
+      </p>
+
+      <div class="bento-grid scroll-reveal-group">
+
+        <div class="bento-card bento-col-7 scroll-reveal">
+          <div>
+            <div class="tech-badge" style="margin-bottom: 0.75rem;">CO-DOCENCIA // MARINUCCI Y MANSILLA</div>
+            <h3 class="bento-card-title">Comunicar Criterios Técnicos y Matemáticos</h3>
+            
+            <p class="bento-card-desc" style="margin-top: 0.75rem;">
+              En la formación técnica se suele priorizar la resolución matemática, los cálculos analíticos y los criterios de diseño. Sin embargo, en la práctica profesional, un técnico que no logra transmitir con claridad sus decisiones y fundamentar su trabajo ante un equipo se encuentra en desventaja.
+            </p>
+            <p class="bento-card-desc" style="margin-top: 0.75rem;">
+              Llevar a los estudiantes de 4to año al auditorio tuvo un impacto formativo notable: <strong>estudiantes que en el día a día del aula se mostraban tímidos y reservados lograron abrirse, proyectar su postura escénica y desenvolverse con soltura</strong>, asumiendo su rol como expositores con un vocabulario técnico enriquecido.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-top: 1.5rem; text-align: center;">
+              <div style="background: var(--bg-secondary); padding: 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                <div style="font-family: var(--font-mono); font-size: 1.25rem; font-weight: 700; color: var(--accent-orange);" data-counter data-target="100" data-suffix="%">100%</div>
+                <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem;">PARTICIPACIÓN Y COMPROMISO</div>
+              </div>
+              <div style="background: var(--bg-secondary); padding: 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                <div style="font-family: var(--font-mono); font-size: 1.25rem; font-weight: 700; color: var(--accent-blue);">AUDITORIO</div>
+                <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem;">ESCENARIO REAL</div>
+              </div>
+              <div style="background: var(--bg-secondary); padding: 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                <div style="font-family: var(--font-mono); font-size: 1.25rem; font-weight: 700; color: var(--accent-green);">TÉCNICO</div>
+                <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem;">VOCABULARIO</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fotos IMPORTANTE integradas directamente -->
+        <div class="bento-card bento-col-5 scroll-reveal">
+          <div class="tech-badge gray" style="margin-bottom: 0.75rem;">EVIDENCIAS DE AULA</div>
+          <h3 class="bento-card-title">Presentaciones y Dinámica Kahoot</h3>
+
+          <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+            <div class="important-media-box" data-lightbox data-src="../assets/img/Presentaciones 4to/IMPORTANTE.jpg" data-title="Auditorio 4to TEL // Exposiciones Orales" data-caption="Estudiantes de 4to año exponiendo sobre transformadores en el auditorio.">
+              <img src="../assets/img/Presentaciones 4to/IMPORTANTE.jpg" alt="Auditorio 4to TEL">
+              <div class="important-media-caption">
+                <span class="tag">AUDITORIO 4to</span>
+                <span>Exposición Oral</span>
+              </div>
+            </div>
+
+            <div class="important-media-box" data-lightbox data-src="../assets/img/Presentaciones 4to/Kajhoot IMPORTANTE.jpg" data-title="Evaluación Interactiva // Dinámica Kahoot" data-caption="Instancia de preguntas técnicas y evaluación interactiva con el grupo.">
+              <img src="../assets/img/Presentaciones 4to/Kajhoot IMPORTANTE.jpg" alt="Kahoot 4to TEL">
+              <div class="important-media-caption">
+                <span class="tag">KAHOOT</span>
+                <span>Evaluación Formativa</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Galería desplegable con las 4 fotos restantes -->
+        <div class="bento-col-12 scroll-reveal">
+          <div class="section-gallery-wrapper">
+            <button class="gallery-toggle-btn" data-gallery-target="gallery-presentaciones-4to" data-count-text="4 fotos">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+              <span class="btn-label">Ver galería completa (4 fotos)</span>
+              <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+
+            <div class="gallery-drawer-content" id="gallery-presentaciones-4to">
+              <div class="gallery-thumbs-grid">
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Presentaciones 4to/20260826_101123.jpg" data-title="Presentaciones 4to - Registro 01"><img src="../assets/img/Presentaciones 4to/20260826_101123.jpg" alt="Presentaciones 4to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Presentaciones 4to/20260826_101134.jpg" data-title="Presentaciones 4to - Registro 02"><img src="../assets/img/Presentaciones 4to/20260826_101134.jpg" alt="Presentaciones 4to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Presentaciones 4to/20260826_101538.jpg" data-title="Presentaciones 4to - Registro 03"><img src="../assets/img/Presentaciones 4to/20260826_101538.jpg" alt="Presentaciones 4to"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Presentaciones 4to/20260902_084724.jpg" data-title="Presentaciones 4to - Registro 04"><img src="../assets/img/Presentaciones 4to/20260902_084724.jpg" alt="Presentaciones 4to"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECCIÓN 03: TECNOCLUBES (TALLERES SOCIOEMOCIONALES Y ROBÓTICA)
+         ======================================================================= -->
+    <section class="portfolio-section" id="sec-3">
+      <div class="section-tag-row scroll-reveal">
+        <span class="tech-badge green">NODO 03 // EXTENSIÓN Y COMUNIDAD</span>
+        <span class="tech-badge gray">TECNOCLUBES // COMUNIDAD</span>
+      </div>
+
+      <h2 class="section-main-title scroll-reveal">
+        Tecnoclubes: Talleres Socioemocionales y Robótica
+      </h2>
+
+      <p class="section-summary-lead scroll-reveal">
+        Iniciativa comunitaria de los sábados por la mañana dirigida a chicos y chicas que no ingresaron a la escuela técnica, combinando talleres socioemocionales de integración grupal y desafíos prácticos de robótica y programación en bloques.
+      </p>
+
+      <div class="bento-grid scroll-reveal-group">
+
+        <div class="bento-card bento-col-12 scroll-reveal">
+          <div>
+            <div class="tech-badge green" style="margin-bottom: 0.75rem;">ORGANIZACIÓN PEDAGÓGICA // ROTACIONES</div>
+            <h3 class="bento-card-title">Dinámica General del Programa</h3>
+            
+            <p class="bento-card-desc" style="margin-top: 0.75rem; line-height: 1.7;">
+              Tecnoclubes se organiza en <strong>4 talleres rotacionales</strong> (<em>Vibraciones, Estructuras en Metal, Impresión 3D y Robótica</em>) con dos grandes grupos de chicos y chicas divididos entre el primer y segundo cuatrimestre. El primer encuentro de cada cuatrimestre consiste en un <strong>taller socioemocional</strong> enfocado en el autoconocimiento, la confianza y la pertenencia (en el 1er cuatrimestre construyeron una <em>rueda de emociones</em> y remontaron <em>barriletes</em>; en el 2do cuatrimestre diseñaron <em>refugios</em>).
+            </p>
+            <p class="bento-card-desc" style="margin-top: 0.75rem; line-height: 1.7;">
+              A partir de allí se conforman comisiones que cursan dos talleres por sábado (con 2 clases por cada taller). En el taller de Robótica, dictado en equipo junto a <strong>Laureano Bolzan</strong>, trabajamos con <strong>robots mBot, computadoras portátiles y el entorno mBlock</strong>, enseñando pseudocódigo, diagramas de flujo y desafíos prácticos de resolución con sensores de ultrasonido y siguelíneas.
+            </p>
+          </div>
+
+          <!-- Fotos IMPORTANTE integradas directamente -->
+          <div style="margin-top: 1.5rem;">
+            <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: var(--accent-orange); margin-bottom: 0.75rem;">
+              EVIDENCIAS DESTACADAS // EQUIPO, ACTIVIDAD SOCIOEMOCIONAL Y ROBÓTICA
+            </div>
+
+            <div class="media-grid-3">
+              <div class="important-media-box" data-lightbox data-src="../assets/img/Tecnoclubes/Generales/Equipo Atrio Editada IMPORTANTE.jpeg" data-title="Equipo Docente Tecnoclubes" data-caption="Equipo docente y facilitadores en el atrio institucional de la escuela.">
+                <img src="../assets/img/Tecnoclubes/Generales/Equipo Atrio Editada IMPORTANTE.jpeg" alt="Equipo Tecnoclubes Atrio">
+                <div class="important-media-caption"><span class="tag">EQUIPO</span><span>Atrio Institucional</span></div>
+              </div>
+
+              <div class="important-media-box" data-lightbox data-src="../assets/img/Tecnoclubes/Rueda de Emociones/Rueda general IMPORTANTE.jpeg" data-title="Taller Socioemocional // Rueda de Emociones" data-caption="Estudiantes trabajando en la identificación y expresión de emociones en equipo.">
+                <img src="../assets/img/Tecnoclubes/Rueda de Emociones/Rueda general IMPORTANTE.jpeg" alt="Rueda de Emociones">
+                <div class="important-media-caption"><span class="tag">EMOCIONES</span><span>1er Cuatrimestre</span></div>
+              </div>
+
+              <div class="important-media-box" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/Barrilete IMPORTANTE.jpeg" data-title="Taller de Barriletes // Integración Comunitaria" data-caption="Construcción y vuelo de barriletes como cierre del módulo socioemocional.">
+                <img src="../assets/img/Tecnoclubes/Barrilete/Barrilete IMPORTANTE.jpeg" alt="Barriletes Tecnoclubes">
+                <div class="important-media-caption"><span class="tag">BARRILETES</span><span>Construcción y Vuelo</span></div>
+              </div>
+
+              <div class="important-media-box" data-lightbox data-src="../assets/img/Tecnoclubes/Refugio/General STEM Exposicion IMPORTANTE.jpeg" data-title="Construcción de Refugios // 2do Cuatrimestre" data-caption="Desafío de estructuras y refugios colectivos en el espacio central.">
+                <img src="../assets/img/Tecnoclubes/Refugio/General STEM Exposicion IMPORTANTE.jpeg" alt="Refugios Tecnoclubes">
+                <div class="important-media-caption"><span class="tag">REFUGIOS</span><span>2do Cuatrimestre</span></div>
+              </div>
+
+              <div class="important-media-box" data-lightbox data-src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/Roboticac yo IMPORTANTE.jpeg" data-title="Taller de Robótica // Matías Mansilla" data-caption="Práctica de programación en bloques y puesta a punto de los mBots con los estudiantes.">
+                <img src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/Roboticac yo IMPORTANTE.jpeg" alt="Robótica Matías Mansilla">
+                <div class="important-media-caption"><span class="tag">ROBÓTICA</span><span>Matías Mansilla</span></div>
+              </div>
+
+              <div class="important-media-box" data-lightbox data-src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/Robotica lauri IMPORTANTE.jpeg" data-title="Taller de Robótica // Laureano Bolzan" data-caption="Acompañamiento en mesa de trabajo con circuitos siguelíneas y sensores.">
+                <img src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/Robotica lauri IMPORTANTE.jpeg" alt="Robótica Laureano Bolzan">
+                <div class="important-media-caption"><span class="tag">ROBÓTICA</span><span>Laureano Bolzan</span></div>
+              </div>
+
+              <!-- Foto solicitada: Rueda de Emociones IMPORTANTE COLOCAR -->
+              <div class="important-media-box" data-lightbox data-src="../assets/img/Tecnoclubes/Rueda de Emociones/IMPORTANTE COLOCAR.jpeg" data-title="Taller Socioemocional // Rueda de Emociones" data-caption="Registro del trabajo e integración grupal con la rueda de emociones.">
+                <img src="../assets/img/Tecnoclubes/Rueda de Emociones/IMPORTANTE COLOCAR.jpeg" alt="Rueda de Emociones Registro" loading="lazy">
+                <div class="important-media-caption"><span class="tag">EMOCIONES</span><span>Trabajo en Equipo</span></div>
+              </div>
+
+              <!-- Video solicitado: Robotica con Laureano Bolzan Video robo 1 -->
+              <div class="important-media-box" data-lightbox data-type="video" data-src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/Video robo 1.mp4" data-title="Taller de Robótica // Video Demostración mBot" data-caption="Desafío y desplazamiento del robot mBot utilizando sensores y programación en mBlock.">
+                <video src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/Video robo 1.mp4" controls playsinline preload="metadata"></video>
+                <div class="important-media-caption"><span class="tag">VIDEO</span><span>Demostración mBot</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Galería desplegable de Tecnoclubes (Registro completo unificado) -->
+          <div class="section-gallery-wrapper">
+            <button class="gallery-toggle-btn" data-gallery-target="gallery-tecnoclubes-resto" data-count-text="49 fotos y videos de Tecnoclubes">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+              <span class="btn-label">Ver galería completa (49 fotos y videos de Tecnoclubes)</span>
+              <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+
+            <div class="gallery-drawer-content" id="gallery-tecnoclubes-resto">
+              <div class="gallery-thumbs-grid">
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/WhasdfatsApp Image 2026-11-22 at 16.50.59.jpeg" data-title="Taller de Barriletes // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Barrilete/WhasdfatsApp Image 2026-11-22 at 16.50.59.jpeg" alt="Taller de Barriletes // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/WhatsApaap Image 2026-11-22 at 16.51.03.jpeg" data-title="Taller de Barriletes // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Barrilete/WhatsApaap Image 2026-11-22 at 16.51.03.jpeg" alt="Taller de Barriletes // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/WhatsApp Iasdfasdfmage 2026-11-22 at 16.51.00.jpeg" data-title="Taller de Barriletes // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Barrilete/WhatsApp Iasdfasdfmage 2026-11-22 at 16.51.00.jpeg" alt="Taller de Barriletes // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/WhatsApp Image 2026-11-22 at 16.50.59.jpeg" data-title="Taller de Barriletes // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Barrilete/WhatsApp Image 2026-11-22 at 16.50.59.jpeg" alt="Taller de Barriletes // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/WhatsApp Image 2026-11-22 at 16.51.00.jpeg" data-title="Taller de Barriletes // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Barrilete/WhatsApp Image 2026-11-22 at 16.51.00.jpeg" alt="Taller de Barriletes // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/WhatsApp Image 2026-11-22 gggat 16.51.03.jpeg" data-title="Taller de Barriletes // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Barrilete/WhatsApp Image 2026-11-22 gggat 16.51.03.jpeg" alt="Taller de Barriletes // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/WhatsApp Image 2026-1h1-22 at 16.51.02.jpeg" data-title="Taller de Barriletes // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Barrilete/WhatsApp Image 2026-1h1-22 at 16.51.02.jpeg" alt="Taller de Barriletes // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/WhatsApp Image 2026-1hh1-22 at 16.51.02.jpeg" data-title="Taller de Barriletes // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Barrilete/WhatsApp Image 2026-1hh1-22 at 16.51.02.jpeg" alt="Taller de Barriletes // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/WhatsApp Image 20hhh26-11-22 at 16.51.02.jpeg" data-title="Taller de Barriletes // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Barrilete/WhatsApp Image 20hhh26-11-22 at 16.51.02.jpeg" alt="Taller de Barriletes // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/WhatsApp Image 2asdf026-11-22 at 16.50.59.jpeg" data-title="Taller de Barriletes // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Barrilete/WhatsApp Image 2asdf026-11-22 at 16.50.59.jpeg" alt="Taller de Barriletes // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/WhatsApp Imagggge 2026-11-22 at 16.51.02.jpeg" data-title="Taller de Barriletes // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Barrilete/WhatsApp Imagggge 2026-11-22 at 16.51.02.jpeg" alt="Taller de Barriletes // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/WhatssssApp Image 2026-11-22 at 16.51.00.jpeg" data-title="Taller de Barriletes // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Barrilete/WhatssssApp Image 2026-11-22 at 16.51.00.jpeg" alt="Taller de Barriletes // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/aaa.jpeg" data-title="Taller de Barriletes // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Barrilete/aaa.jpeg" alt="Taller de Barriletes // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/asdf.jpeg" data-title="Taller de Barriletes // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Barrilete/asdf.jpeg" alt="Taller de Barriletes // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/barrilete trabajo IMPORTANTE.jpeg" data-title="Taller de Barriletes // Armado y Construcción"><img src="../assets/img/Tecnoclubes/Barrilete/barrilete trabajo IMPORTANTE.jpeg" alt="Taller de Barriletes // Armado y Construcción" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/dddd.jpeg" data-title="Taller de Barriletes // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Barrilete/dddd.jpeg" alt="Taller de Barriletes // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/ff.jpeg" data-title="Taller de Barriletes // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Barrilete/ff.jpeg" alt="Taller de Barriletes // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/fff.jpeg" data-title="Taller de Barriletes // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Barrilete/fff.jpeg" alt="Taller de Barriletes // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/ggg.jpeg" data-title="Taller de Barriletes // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Barrilete/ggg.jpeg" alt="Taller de Barriletes // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Barrilete/gggg.jpeg" data-title="Taller de Barriletes // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Barrilete/gggg.jpeg" alt="Taller de Barriletes // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Generales/Equipo Atrio.jpeg" data-title="Equipo Tecnoclubes // Registro Institucional"><img src="../assets/img/Tecnoclubes/Generales/Equipo Atrio.jpeg" alt="Equipo Tecnoclubes // Registro Institucional" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Generales/Equipo Socioemocionales IMPORTANTE.jpeg" data-title="Equipo Tecnoclubes // Facilitadores y Docentes"><img src="../assets/img/Tecnoclubes/Generales/Equipo Socioemocionales IMPORTANTE.jpeg" alt="Equipo Tecnoclubes // Facilitadores y Docentes" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Generales/Equipo.jpeg" data-title="Equipo Tecnoclubes // Foto de Equipo"><img src="../assets/img/Tecnoclubes/Generales/Equipo.jpeg" alt="Equipo Tecnoclubes // Foto de Equipo" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Generales/WhatsApp Image 2026-11asdfasdf-22 at 16.50.58.jpeg" data-title="Equipo Tecnoclubes // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Generales/WhatsApp Image 2026-11asdfasdf-22 at 16.50.58.jpeg" alt="Equipo Tecnoclubes // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Refugio/General STEM Exposicion 2.jpeg" data-title="Taller de Refugios STEM // Exposición Colectiva"><img src="../assets/img/Tecnoclubes/Refugio/General STEM Exposicion 2.jpeg" alt="Taller de Refugios STEM // Exposición Colectiva" loading="lazy"></div>
+                <div class="gallery-thumb-item video-item" data-lightbox data-type="video" data-src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/20261017_100232.mp4" data-title="Taller de Robótica mBot // Video Registro (20261017_100232)"><video src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/20261017_100232.mp4"></video></div>
+                <div class="gallery-thumb-item video-item" data-lightbox data-type="video" data-src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/20261017_112647.mp4" data-title="Taller de Robótica mBot // Video Registro (20261017_112647)"><video src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/20261017_112647.mp4"></video></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/IMG_20260425_114411658.jpg" data-title="Taller de Robótica mBot // Puesta a Punto en Mesada"><img src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/IMG_20260425_114411658.jpg" alt="Taller de Robótica mBot // Puesta a Punto en Mesada" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/IMG_20260425_114622274.jpg" data-title="Taller de Robótica mBot // Programación en Bloques"><img src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/IMG_20260425_114622274.jpg" alt="Taller de Robótica mBot // Programación en Bloques" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/IMG_20260425_115142885.jpg" data-title="Taller de Robótica mBot // Ajuste de Sensor Siguelíneas"><img src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/IMG_20260425_115142885.jpg" alt="Taller de Robótica mBot // Ajuste de Sensor Siguelíneas" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/IMG_20260509_120529585.jpg" data-title="Taller de Robótica mBot // Ensayo en Pista"><img src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/IMG_20260509_120529585.jpg" alt="Taller de Robótica mBot // Ensayo en Pista" loading="lazy"></div>
+                <div class="gallery-thumb-item video-item" data-lightbox data-type="video" data-src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/Video robo 2.mp4" data-title="Taller de Robótica mBot // Video Recorrido en Cuadrado"><video src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/Video robo 2.mp4"></video></div>
+                <div class="gallery-thumb-item video-item" data-lightbox data-type="video" data-src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/video robo 3.mp4" data-title="Taller de Robótica mBot // Video Pista Siguelíneas"><video src="../assets/img/Tecnoclubes/Robotica con Laureano Bolzan/video robo 3.mp4"></video></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Rueda de Emociones/RE 1.jpeg" data-title="Rueda de Emociones // Esquema de Dinámica"><img src="../assets/img/Tecnoclubes/Rueda de Emociones/RE 1.jpeg" alt="Rueda de Emociones // Esquema de Dinámica" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Rueda de Emociones/WhatsApp Imagasdf 2026-11-22 at 16.50.58.jpeg" data-title="Rueda de Emociones // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Rueda de Emociones/WhatsApp Imagasdf 2026-11-22 at 16.50.58.jpeg" alt="Rueda de Emociones // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Rueda de Emociones/WhatsApp Image 2026-11-22 at 16.50.54.jpeg" data-title="Rueda de Emociones // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Rueda de Emociones/WhatsApp Image 2026-11-22 at 16.50.54.jpeg" alt="Rueda de Emociones // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Rueda de Emociones/WhatsApp Image 2026-11-22 at 16.50.57.jpeg" data-title="Rueda de Emociones // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Rueda de Emociones/WhatsApp Image 2026-11-22 at 16.50.57.jpeg" alt="Rueda de Emociones // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Rueda de Emociones/WhatsApp Image 2026-11-22 dat 16.50.57.jpeg" data-title="Rueda de Emociones // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Rueda de Emociones/WhatsApp Image 2026-11-22 dat 16.50.57.jpeg" alt="Rueda de Emociones // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Rueda de Emociones/WhatsApp Image 2026-11-aa2 at 16.50.55.jpeg" data-title="Rueda de Emociones // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Rueda de Emociones/WhatsApp Image 2026-11-aa2 at 16.50.55.jpeg" alt="Rueda de Emociones // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Rueda de Emociones/WhatsApp Image 2026-11-jj22 at 16.51.04.jpeg" data-title="Rueda de Emociones // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Rueda de Emociones/WhatsApp Image 2026-11-jj22 at 16.51.04.jpeg" alt="Rueda de Emociones // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Rueda de Emociones/WhatsApp Image 2026asd-11-22 at 16.50.56.jpeg" data-title="Rueda de Emociones // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Rueda de Emociones/WhatsApp Image 2026asd-11-22 at 16.50.56.jpeg" alt="Rueda de Emociones // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Rueda de Emociones/WhatsApp Image 2aaa26-11-22 at 16.50.55.jpeg" data-title="Rueda de Emociones // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Rueda de Emociones/WhatsApp Image 2aaa26-11-22 at 16.50.55.jpeg" alt="Rueda de Emociones // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Rueda de Emociones/WhatsApp Imddage 2026-11-22 at 16.50.56.jpeg" data-title="Rueda de Emociones // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Rueda de Emociones/WhatsApp Imddage 2026-11-22 at 16.50.56.jpeg" alt="Rueda de Emociones // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Rueda de Emociones/aaaa.jpeg" data-title="Rueda de Emociones // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Rueda de Emociones/aaaa.jpeg" alt="Rueda de Emociones // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Rueda de Emociones/dd.jpeg" data-title="Rueda de Emociones // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Rueda de Emociones/dd.jpeg" alt="Rueda de Emociones // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Talleres Socioemocionales/WhatsApp Image 2026-11-22 at 1j6.51.05.jpeg" data-title="Talleres Socioemocionales // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Talleres Socioemocionales/WhatsApp Image 2026-11-22 at 1j6.51.05.jpeg" alt="Talleres Socioemocionales // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Talleres Socioemocionales/WhatsApp Image 20ggg26-11-22 at 16.51.04.jpeg" data-title="Talleres Socioemocionales // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Talleres Socioemocionales/WhatsApp Image 20ggg26-11-22 at 16.51.04.jpeg" alt="Talleres Socioemocionales // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Talleres Socioemocionales/WhatsApp Imagsse 2026-11-22 at 16.50.56.jpeg" data-title="Talleres Socioemocionales // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Talleres Socioemocionales/WhatsApp Imagsse 2026-11-22 at 16.50.56.jpeg" alt="Talleres Socioemocionales // Registro de Actividad" loading="lazy"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Tecnoclubes/Talleres Socioemocionales/WhatsApp sssImage 2026-11-22 at 16.50.56.jpeg" data-title="Talleres Socioemocionales // Registro de Actividad"><img src="../assets/img/Tecnoclubes/Talleres Socioemocionales/WhatsApp sssImage 2026-11-22 at 16.50.56.jpeg" alt="Talleres Socioemocionales // Registro de Actividad" loading="lazy"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECCIÓN 04: CITGRIP (REHABILITADOR DE MANOS POST-ACV)
+         ======================================================================= -->
+    <section class="portfolio-section" id="sec-4">
+      <div class="section-tag-row scroll-reveal">
+        <span class="tech-badge orange">NODO 04 // VINCULACIÓN TERRITORIAL</span>
+        <span class="tech-badge gray">PROYECTO // MUESTRA ESCOBAR</span>
+      </div>
+
+      <h2 class="section-main-title scroll-reveal">
+        CITgrip: Rehabilitador de Manos
+      </h2>
+
+      <p class="section-summary-lead scroll-reveal">
+        Acompañamiento al grupo de estudiantes de 5to año en la presentación de su proyecto biomédico en la muestra de Escobar, un desarrollo electromecánico con base técnica que el equipo viene desarrollando desde el año pasado (2025).
+      </p>
+
+      <div class="bento-grid scroll-reveal-group">
+
+        <div class="bento-card bento-col-7 scroll-reveal">
+          <div>
+            <div class="tech-badge orange" style="margin-bottom: 0.75rem;">TECNOLOGÍA SOCIAL // SALUD</div>
+            <h3 class="bento-card-title">Compromiso Ético y Claridad Técnica</h3>
+            
+            <p class="bento-card-desc" style="margin-top: 0.75rem; line-height: 1.7;">
+              El proyecto <strong>CITgrip</strong> se basa en un guante mecánico automatizado para la rehabilitación motriz pasiva y activa de personas que han sufrido accidentes cerebrovasculares. Es un desarrollo sostenido en el tiempo que las estudiantes comenzaron en 2025 y continuaron perfeccionando durante este ciclo.
+            </p>
+            <p class="bento-card-desc" style="margin-top: 0.75rem; line-height: 1.7;">
+              Lo más destacado de la jornada fue la <strong>solidez técnica y claridad</strong> con la que el grupo de estudiantes explicó el funcionamiento de los sensores flexores, actuadores lineales, servomotores y la calibración del software de control ante los evaluadores y el público general.
+            </p>
+          </div>
+
+          <!-- Video IMPORTANTE integrado directamente con reproductor nativo -->
+          <div style="margin-top: 1.25rem;">
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-orange); margin-bottom: 0.5rem; font-weight: 700;">
+              VIDEO DE DEMOSTRACIÓN DEL DISPOSITIVO // STAND ESCOBAR
+            </div>
+            <div class="important-media-box" style="cursor: default;">
+              <video src="../assets/img/CITGrip/Video IMPORTANTE.mp4" controls playsinline style="max-height: 380px;"></video>
+              <div class="important-media-caption">
+                <span class="tag">VIDEO DEMOSTRACIÓN</span>
+                <span>Mecanismo de tracción del guante rehabilitador</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto IMPORTANTE vertical integrada directamente -->
+        <div class="bento-card bento-col-5 scroll-reveal">
+          <div class="tech-badge gray" style="margin-bottom: 0.75rem;">REGISTRO DEL STAND</div>
+          <h3 class="bento-card-title">Presentación en Escobar</h3>
+
+          <div class="important-media-box" data-lightbox data-src="../assets/img/CITGrip/General Vertical 1 IMPORTANTE.jpg" data-title="Stand CITgrip // Escobar" data-caption="Estudiantes de 5to año exhibiendo el prototipo funcional en la muestra de Escobar." style="margin-top: 1rem;">
+            <img src="../assets/img/CITGrip/General Vertical 1 IMPORTANTE.jpg" alt="Stand CITgrip">
+            <div class="important-media-caption">
+              <span class="tag">STAND ESCOBAR</span>
+              <span>Equipo de 5to año</span>
+            </div>
+          </div>
+
+          <!-- Galería desplegable de CITGrip con 5 fotos -->
+          <div class="section-gallery-wrapper">
+            <button class="gallery-toggle-btn" data-gallery-target="gallery-citgrip-resto" data-count-text="5 fotos">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+              <span class="btn-label">Ver galería completa (5 fotos)</span>
+              <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+
+            <div class="gallery-drawer-content" id="gallery-citgrip-resto">
+              <div class="gallery-thumbs-grid">
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/CITGrip/20261029_144507.jpg" data-title="CITgrip Detalle 01"><img src="../assets/img/CITGrip/20261029_144507.jpg" alt="CITgrip"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/CITGrip/20261029_144512.jpg" data-title="CITgrip Detalle 02"><img src="../assets/img/CITGrip/20261029_144512.jpg" alt="CITgrip"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/CITGrip/20261029_144524.jpg" data-title="CITgrip Detalle 03"><img src="../assets/img/CITGrip/20261029_144524.jpg" alt="CITgrip"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/CITGrip/Geneal Horizontal.jpg" data-title="CITgrip Stand Horizontal"><img src="../assets/img/CITGrip/Geneal Horizontal.jpg" alt="CITgrip Horizontal"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/CITGrip/General Vertical 2.jpg" data-title="CITgrip Stand Vertical"><img src="../assets/img/CITGrip/General Vertical 2.jpg" alt="CITgrip Vertical 2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECCIÓN 05: PROYECTO CENTRAL — FUENTES REGULADAS VARIABLES (4to TEL)
+         ======================================================================= -->
+    <section class="portfolio-section" id="sec-5">
+      <div class="section-tag-row scroll-reveal">
+        <span class="tech-badge orange">
+          <span class="status-dot"></span>
+          NODO 05 // PROYECTO CENTRAL DEL AÑO
+        </span>
+        <span class="tech-badge gray">4to TEL · AEA · FABRICACIÓN PCB</span>
+      </div>
+
+      <h2 class="section-main-title scroll-reveal" style="color: var(--accent-orange);">
+        Fuentes Reguladas Variables: El Valor Pedagógico del Error Real
+      </h2>
+
+      <p class="section-summary-lead scroll-reveal">
+        Como alumno de 4to año de la ETRR fabriqué mi propia fuente regulada, un circuito que marcó para siempre mi vocación electrónica. En 2026, al asumir por primera vez un curso desde principio de año, busqué replicar esa experiencia. Las placas físicas no encendieron a tiempo por desajustes en el fresado CNC, pero el resultado formativo superó cualquier expectativa idealista.
+      </p>
+
+      <!-- Bento Central Container -->
+      <div class="bento-card central-highlight scroll-reveal" data-tabs-group>
+        
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 1rem;">
+          <div>
+            <div class="tech-badge orange" style="margin-bottom: 0.5rem;">MEMORIA REFLEXIVA PRINCIPAL</div>
+            <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--text-primary);">
+              De la Pantalla al Cobre: La Dureza de la Realidad Física
+            </h3>
+          </div>
+
+          <!-- Pestañas Interactivas de las 4 Etapas -->
+          <div class="tech-tabs-nav">
+            <button class="tech-tab-btn active" data-tab-target="tab-simulacion">
+              <span>1. Simulación en LTspice</span>
+            </button>
+            <button class="tech-tab-btn" data-tab-target="tab-pcb">
+              <span>2. Diseño en KiCad</span>
+            </button>
+            <button class="tech-tab-btn" data-tab-target="tab-cnc">
+              <span>3. Fresado CNC</span>
+            </button>
+            <button class="tech-tab-btn" data-tab-target="tab-mape">
+              <span>4. Defensa y Exposición</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Contenido de las 4 Etapas -->
+        <div class="tech-tab-content" style="margin-top: 1rem;">
+          
+          <!-- Etapa 1: Simulación en LTspice con Mini-Carrusel -->
+          <div class="tech-tab-pane active" data-tab-pane="tab-simulacion">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; align-items: center;">
+              <div>
+                <h4 style="font-family: var(--font-mono); color: var(--accent-orange); font-size: 1.05rem; margin-bottom: 0.5rem;">
+                  1. Simulación en LTspice
+                </h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;">
+                  La simulación abarcó hasta el capacitor encargado del <em>ripple</em> (V<sub>pp</sub>), con el objetivo de tener un primer contacto con la herramienta, aprender a implementar un transformador de dos bobinas, armar un puente de diodos y verificar teóricamente la rectificación en cada etapa del circuito.
+                </p>
+                <div style="margin-top: 1rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-blue);">
+                  ▸ Modelado de etapas: Entrada AC → Transformador → Rectificador de onda completa → Filtro capacitivo.
+                </div>
+              </div>
+
+              <!-- Visor con transición automática temporizada y flechas manuales para las 2 fotos de LTspice -->
+              <div class="mini-carousel-container" id="carousel-ltspice">
+                <div class="mini-carousel-track">
+                  <div class="mini-carousel-slide active" data-lightbox data-src="../assets/img/Fuentes Reguladas Variables 4to/LTspice/Circuito IMPORTANTE.png" data-title="Simulación en LTspice // Circuito Esquemático" data-caption="Esquema circuital en LTspice con transformador de dos bobinas, puente de diodos y capacitor de filtrado.">
+                    <img src="../assets/img/Fuentes Reguladas Variables 4to/LTspice/Circuito IMPORTANTE.png" alt="Circuito LTspice">
+                  </div>
+                  <div class="mini-carousel-slide" data-lightbox data-src="../assets/img/Fuentes Reguladas Variables 4to/LTspice/Graficos.jpg" data-title="Simulación en LTspice // Curvas de Tensión" data-caption="Análisis transitorio y verificación teórica del rizado y rectificación de onda.">
+                    <img src="../assets/img/Fuentes Reguladas Variables 4to/LTspice/Graficos.jpg" alt="Gráficos LTspice">
+                  </div>
+                </div>
+                <button class="mini-carousel-nav-btn prev" aria-label="Anterior slide">❮</button>
+                <button class="mini-carousel-nav-btn next" aria-label="Siguiente slide">❯</button>
+                <div class="mini-carousel-dots">
+                  <span class="mini-carousel-dot active"></span>
+                  <span class="mini-carousel-dot"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Etapa 2: Diseño en KiCad con Mini-Carrusel -->
+          <div class="tech-tab-pane" data-tab-pane="tab-pcb">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; align-items: center;">
+              <div>
+                <h4 style="font-family: var(--font-mono); color: var(--accent-orange); font-size: 1.05rem; margin-bottom: 0.5rem;">
+                  2. Diseño en KiCad
+                </h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;">
+                  Cada grupo desarrolló un diseño propio para su placa respetando las convenciones trabajadas en clase, incorporando las herramientas de <strong>KiCad</strong> como base sólida para sus futuros diseños electrónicos en los años superiores de la especialidad.
+                </p>
+                <div style="margin-top: 1rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-blue);">
+                  ▸ Ruteo y huellas: Selección de footprints para electrolíticos, pistas monomapa y conexionado seguro.
+                </div>
+              </div>
+
+              <!-- Visor con flechas / transición para alternar entre fotos de diseño de los estudiantes -->
+              <div class="mini-carousel-container" id="carousel-kicad">
+                <div class="mini-carousel-track">
+                  <div class="mini-carousel-slide active" data-lightbox data-src="../assets/img/Fuentes Reguladas Variables 4to/KiCad/Vista 3d 3.png" data-title="Diseño en KiCad // Trabajo de Estudiantes" data-caption="Diseño en KiCad de un grupo de estudiantes.">
+                    <img src="../assets/img/Fuentes Reguladas Variables 4to/KiCad/Vista 3d 3.png" alt="Diseño KiCad 1">
+                  </div>
+                  <div class="mini-carousel-slide" data-lightbox data-src="../assets/img/Fuentes Reguladas Variables 4to/KiCad/Vista 3d 2.png" data-title="Diseño en KiCad // Ruteo de Placa" data-caption="Diseño en KiCad de un grupo de estudiantes (1era Vista 3D)">
+                    <img src="../assets/img/Fuentes Reguladas Variables 4to/KiCad/Vista 3d 2.png" alt="Diseño KiCad 2">
+                  </div>
+                  <div class="mini-carousel-slide" data-lightbox data-src="../assets/img/Fuentes Reguladas Variables 4to/KiCad/Vista 3d 1.png" data-title="KiCad // Sesión de Taller" data-caption="Diseño en KiCad de un grupo de estudiantes (2da Vista 3D)">
+                    <img src="../assets/img/Fuentes Reguladas Variables 4to/KiCad/Vista 3d 1.png" alt="KiCad Sesión">
+                  </div>
+                </div>
+                <button class="mini-carousel-nav-btn prev" aria-label="Anterior slide">❮</button>
+                <button class="mini-carousel-nav-btn next" aria-label="Siguiente slide">❯</button>
+                <div class="mini-carousel-dots">
+                  <span class="mini-carousel-dot active"></span>
+                  <span class="mini-carousel-dot"></span>
+                  <span class="mini-carousel-dot"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Etapa 3: Fresado CNC -->
+          <div class="tech-tab-pane" data-tab-pane="tab-cnc">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; align-items: center;">
+              <div>
+                <h4 style="font-family: var(--font-mono); color: var(--accent-orange); font-size: 1.05rem; margin-bottom: 0.5rem;">
+                  3. Fresado CNC
+                </h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;">
+                  Tras ver buenos resultados previos de placas mecanizadas en CNC, busqué replicar la experiencia para que los estudiantes se familiarizaran con la máquina y obtuvieran terminaciones prolijas. Conté con la colaboración de un estudiante de 7mo año, pero mi poca experiencia previa con la CNC y la falta de definición en ciertos parámetros guía generaron inconvenientes que dificultaron la soldadura, logrando que funcionaran <strong>2 de las 7 placas</strong> presentadas.
+                </p>
+                <div style="margin-top: 1rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-red);">
+                  ▸ Desafío de taller: Canales de aislamiento estrechos y dificultades de adherencia del estaño en pistas.
+                </div>
+              </div>
+
+              <!-- Foto de la placa fallada -->
+              <div class="important-media-box" data-lightbox data-src="../assets/img/Fuentes Reguladas Variables 4to/CNC/PCB.jpg" data-title="Placa Mecanizada en CNC // Diagnóstico Físico" data-caption="Detalle de placa fallada: aislamiento irregular y levantamiento de pistas durante el soldado.">
+                <img src="../assets/img/Fuentes Reguladas Variables 4to/CNC/PCB.jpg" alt="Placa CNC fallada">
+                <div class="important-media-caption">
+                  <span class="tag">CNC // PCB</span>
+                  <span>Placa con fallas de aislamiento</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Etapa 4: Defensa y Exposición -->
+          <div class="tech-tab-pane" data-tab-pane="tab-mape">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; align-items: center;">
+              <div>
+                <h4 style="font-family: var(--font-mono); color: var(--accent-orange); font-size: 1.05rem; margin-bottom: 0.5rem;">
+                  4. Defensa y Exposición en MAPE
+                </h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;">
+                  Lejos de ocultar los inconvenientes, los estudiantes se pararon frente al público y explicaron con total transparencia las razones por las cuales los resultados no salieron como esperábamos, todas las mejoras posibles y todo lo que lograron aprender durante el desarrollo y la reflexión sobre el proceso.
+                </p>
+                <div style="margin-top: 1rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-green);">
+                  ▸ Madurez pedagógica: Saber diagnosticar y comunicar la causa de un error es el verdadero sello formativo.
+                </div>
+              </div>
+
+              <!-- Foto IMPORTANTE de MAPE en Fuentes -->
+              <div class="important-media-box" data-lightbox data-src="../assets/img/Fuentes Reguladas Variables 4to/MAPE/IMPORTANTE.jpg" data-title="Defensa de Fuentes en MAPE // 4to TEL" data-caption="Estudiantes de 4to año explicando con solidez técnica las placas y las razones de los resultados ante evaluadores.">
+                <img src="../assets/img/Fuentes Reguladas Variables 4to/MAPE/IMPORTANTE.jpg" alt="Defensa MAPE Fuentes">
+                <div class="important-media-caption">
+                  <span class="tag">MAPE // 4to TEL</span>
+                  <span>Defensa Técnica y Diagnóstico</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 3 Tarjetas resumen inferiores solicitadas -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; border-top: 1px solid var(--border-subtle); padding-top: 1.5rem; margin-top: 1.5rem;">
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-orange);">01 // HERRAMIENTAS DIGITALES</div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary); margin-top: 0.2rem;">Software de simulación y diseño PCB</div>
+            <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.35rem; line-height: 1.5;">
+              Primeros pasos en software específico para el desarrollo de simulaciones y para esquematizar y diseñar una PCB.
+            </div>
+          </div>
+
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-blue);">02 // CAUSA RAÍZ Y METACONOCIMIENTO</div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary); margin-top: 0.2rem;">Diagnóstico y aprendizaje técnico</div>
+            <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.35rem; line-height: 1.5;">
+              Las placas no funcionaron debido a complicaciones en la soldadura originadas por errores durante la fabricación de las PCB en la CNC.
+            </div>
+          </div>
+
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-green);">03 // VALOR FORMATIVO</div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary); margin-top: 0.2rem;">Compromiso voluntario</div>
+            <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.35rem; line-height: 1.5;">
+              Se abrió un espacio para que los estudiantes que ya habían aprobado la materia pudieran realizar un segundo intento utilizando métodos más tradicionales. Me sorprendió y alegró las ganas y cantidad de estudiantes que se sumaron a dicha iniciativa.
+            </div>
+          </div>
+        </div>
+
+        <!-- Galería desplegable de fotos de MAPE y primeros pasos de Fuentes -->
+        <div class="section-gallery-wrapper">
+          <button class="gallery-toggle-btn" data-gallery-target="gallery-fuentes-resto" data-count-text="11 fotos de fuentes y MAPE">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+            <span class="btn-label">Ver galería completa (11 fotos de fuentes y MAPE)</span>
+            <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+
+          <div class="gallery-drawer-content" id="gallery-fuentes-resto">
+            <div class="gallery-thumbs-grid">
+              <!-- Todos los registros de Primeros Pasos en Taller -->
+              <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Fuentes Reguladas Variables 4to/Primeros pasos/20261007_115853.jpg" data-title="Taller Primeros Pasos // Trabajo en Mesa"><img src="../assets/img/Fuentes Reguladas Variables 4to/Primeros pasos/20261007_115853.jpg" alt="Primeros Pasos Trabajo en Mesa" loading="lazy"></div>
+              <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Fuentes Reguladas Variables 4to/Primeros pasos/20261007_115918 IMPORTANTE.jpg" data-title="Taller Primeros Pasos // Esquematizado y Prototipado"><img src="../assets/img/Fuentes Reguladas Variables 4to/Primeros pasos/20261007_115918 IMPORTANTE.jpg" alt="Primeros Pasos Esquematizado" loading="lazy"></div>
+              <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Fuentes Reguladas Variables 4to/Primeros pasos/20261007_120328.jpg" data-title="Taller Primeros Pasos // Acompañamiento en Diseño"><img src="../assets/img/Fuentes Reguladas Variables 4to/Primeros pasos/20261007_120328.jpg" alt="Primeros Pasos Acompañamiento" loading="lazy"></div>
+              <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Fuentes Reguladas Variables 4to/Primeros pasos/20261007_125751.jpg" data-title="Taller Primeros Pasos // Ensayo y Verificación"><img src="../assets/img/Fuentes Reguladas Variables 4to/Primeros pasos/20261007_125751.jpg" alt="Primeros Pasos Ensayo" loading="lazy"></div>
+              <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Fuentes Reguladas Variables 4to/Primeros pasos/20261007_130158 IMPORTANTE.jpg" data-title="Taller Primeros Pasos // Ruteo y Soldadura"><img src="../assets/img/Fuentes Reguladas Variables 4to/Primeros pasos/20261007_130158 IMPORTANTE.jpg" alt="Primeros Pasos Ruteo" loading="lazy"></div>
+              <!-- Registros de MAPE en Fuentes -->
+              <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Fuentes Reguladas Variables 4to/MAPE/20261113_161701.jpg" data-title="MAPE Fuentes // Registro 01"><img src="../assets/img/Fuentes Reguladas Variables 4to/MAPE/20261113_161701.jpg" alt="MAPE Fuentes 01" loading="lazy"></div>
+              <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Fuentes Reguladas Variables 4to/MAPE/20261113_161705.jpg" data-title="MAPE Fuentes // Registro 02"><img src="../assets/img/Fuentes Reguladas Variables 4to/MAPE/20261113_161705.jpg" alt="MAPE Fuentes 02" loading="lazy"></div>
+              <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Fuentes Reguladas Variables 4to/MAPE/20261113_164127 .jpg" data-title="MAPE Fuentes // Registro 03"><img src="../assets/img/Fuentes Reguladas Variables 4to/MAPE/20261113_164127 .jpg" alt="MAPE Fuentes 03" loading="lazy"></div>
+              <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Fuentes Reguladas Variables 4to/MAPE/20261113_164130.jpg" data-title="MAPE Fuentes // Registro 04"><img src="../assets/img/Fuentes Reguladas Variables 4to/MAPE/20261113_164130.jpg" alt="MAPE Fuentes 04" loading="lazy"></div>
+              <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Fuentes Reguladas Variables 4to/MAPE/20261113_164136.jpg" data-title="MAPE Fuentes // Registro 05"><img src="../assets/img/Fuentes Reguladas Variables 4to/MAPE/20261113_164136.jpg" alt="MAPE Fuentes 05" loading="lazy"></div>
+              <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/Fuentes Reguladas Variables 4to/MAPE/20261113_164140.jpg" data-title="MAPE Fuentes // Registro 06"><img src="../assets/img/Fuentes Reguladas Variables 4to/MAPE/20261113_164140.jpg" alt="MAPE Fuentes 06" loading="lazy"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECCIÓN 06: MAPE (MUESTRA ABIERTA DE PROYECTOS ESTUDIANTILES)
+         ======================================================================= -->
+    <section class="portfolio-section" id="sec-6">
+      <div class="section-tag-row scroll-reveal">
+        <span class="tech-badge">NODO 06 // COMUNIDAD Y EXHIBICIÓN</span>
+        <span class="tech-badge gray">MUESTRA ABIERTA DE PROYECTOS ESTUDIANTILES</span>
+      </div>
+
+      <h2 class="section-main-title scroll-reveal">
+        MAPE: Encuentro de Proyectos y Comunidad
+      </h2>
+
+      <p class="section-summary-lead scroll-reveal">
+        MAPE es el espacio institucional que congrega a familias, evaluadores y a la comunidad cercana para compartir las producciones técnico-pedagógicas desarrolladas por los estudiantes a lo largo de todo el ciclo escolar.
+      </p>
+
+      <div class="bento-grid scroll-reveal-group">
+
+        <div class="bento-card bento-col-7 scroll-reveal">
+          <div>
+            <div class="tech-badge" style="margin-bottom: 0.75rem;">MUESTRA ANUAL // ETRR</div>
+            <h3 class="bento-card-title">Cátedras y Proyectos Expuestos</h3>
+            
+            <p class="bento-card-desc" style="margin-top: 0.75rem; line-height: 1.7;">
+              En MAPE acompañe y coordine los stands de los proyectos desarrollados bajo mi seguimiento en diferentes niveles de la especialidad técnica:
+            </p>
+            
+            <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem; font-size: 0.88rem; color: var(--text-secondary);">
+              <div>▸ <strong>4to año en AEA:</strong> Desarrollo de las fuentes reguladas variables y circuitos rectificadores de onda completa.</div>
+              <div>▸ <strong>5to año en STEM:</strong> Desarrollo del proyecto <strong>MINI Titan</strong>, integrando mecánica, estructuras, electrónica y control.</div>
+              <div>▸ <strong>7mo año en PyDE:</strong> Proyectos terminales de diseño electrónico integradores como cierre de tecnicatura.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto IMPORTANTE de Mini Titan integrada directamente -->
+        <div class="bento-card bento-col-5 scroll-reveal">
+          <div class="tech-badge orange" style="margin-bottom: 0.75rem;">PROYECTO DESTACADO // STEM 5to</div>
+          <h3 class="bento-card-title">MINI Titan</h3>
+
+          <div class="important-media-box" data-lightbox data-src="../assets/img/MAPE General pero Proyectos de  mis Estudiantes/Mini titan 3 IMPORTANTE.jpg" data-title="Proyecto MINI Titan // MAPE" data-caption="Robot MINI Titan desarrollado por estudiantes de 5to año en la cátedra de STEM.">
+            <img src="../assets/img/MAPE General pero Proyectos de  mis Estudiantes/Mini titan 3 IMPORTANTE.jpg" alt="Mini Titan MAPE">
+            <div class="important-media-caption">
+              <span class="tag">MINI TITAN</span>
+              <span>Proyecto STEM 5to año</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Galería desplegable con fotos extras de MAPE -->
+        <div class="bento-col-12 scroll-reveal">
+          <div class="section-gallery-wrapper">
+            <button class="gallery-toggle-btn" data-gallery-target="gallery-mape-resto" data-count-text="3 fotos">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+              <span class="btn-label">Ver galería completa (3 fotos)</span>
+              <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+
+            <div class="gallery-drawer-content" id="gallery-mape-resto">
+              <div class="gallery-thumbs-grid">
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/MAPE General pero Proyectos de  mis Estudiantes/Mini Titan 1.jpg" data-title="Mini Titan Stand"><img src="../assets/img/MAPE General pero Proyectos de  mis Estudiantes/Mini Titan 1.jpg" alt="Mini Titan"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/MAPE General pero Proyectos de  mis Estudiantes/CITgrip 1.jpg" data-title="CITgrip Stand en MAPE 01"><img src="../assets/img/MAPE General pero Proyectos de  mis Estudiantes/CITgrip 1.jpg" alt="CITgrip en MAPE"></div>
+                <div class="gallery-thumb-item" data-lightbox data-src="../assets/img/MAPE General pero Proyectos de  mis Estudiantes/CITgrip 2.jpg" data-title="CITgrip Stand en MAPE 02"><img src="../assets/img/MAPE General pero Proyectos de  mis Estudiantes/CITgrip 2.jpg" alt="CITgrip en MAPE 2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECCIÓN 07: PROYECCIÓN CICLO LECTIVO 2027 (GRILLA 2x3 CON 6 METAS)
+         ======================================================================= -->
+    <section class="portfolio-section" id="sec-7">
+      <div class="section-tag-row scroll-reveal">
+        <span class="tech-badge">NODO 07 // CIERRE Y HORIZONTE</span>
+        <span class="tech-badge gray">V<sub>OUT</sub>: HOJA DE RUTA 2027</span>
+      </div>
+
+      <h2 class="section-main-title scroll-reveal">
+        Consolidación de Cátedra y Metas Ciclo 2027
+      </h2>
+
+      <p class="section-summary-lead scroll-reveal">
+        La experiencia reflexiva de 2026 deja un piso sólido y líneas de acción concretas para el próximo año lectivo, asegurando que cada lección aprendida se traduzca en una mejora directa de la experiencia formativa de los futuros técnicos.
+      </p>
+
+      <!-- Grilla de 2 columnas por 3 filas (6 Metas) -->
+      <div class="projection-grid-2x3 scroll-reveal-group">
+
+        <!-- Meta 1 -->
+        <div class="bento-card scroll-reveal">
+          <div>
+            <div class="tech-badge orange" style="margin-bottom: 0.75rem;">META 01 // FABRICACIÓN</div>
+            <h3 class="bento-card-title">Fabricación artesanal de PCB (4to año)</h3>
+            <p class="bento-card-desc" style="margin-top: 0.75rem; line-height: 1.65;">
+              Tras los inconvenientes con la CNC, junto a mi pareja pedagógica decidimos volver el próximo año a un proceso artesanal similar al que realicé como estudiante (definiendo entre <em>papel transfer + planchado</em> o <em>pintura y pantógrafo</em>, ambos seguidos de atacado con <em>cloruro férrico</em>). Esto permitirá que los estudiantes puedan fabricar placas por su cuenta (incluso en sus casas con las medidas de seguridad adecuadas) y requerirá ajustar la planificación para asignar más tiempo de taller.
+            </p>
+          </div>
+        </div>
+
+        <!-- Meta 2 -->
+        <div class="bento-card scroll-reveal">
+          <div>
+            <div class="tech-badge" style="margin-bottom: 0.75rem;">META 02 // COMUNICACIÓN</div>
+            <h3 class="bento-card-title">Continuidad de exposiciones orales (4to año)</h3>
+            <p class="bento-card-desc" style="margin-top: 0.75rem; line-height: 1.65;">
+              Sostener las defensas en el auditorio a partir de experiencias significativas para los estudiantes, entrenando de manera sistemática la postura escénica, el vocabulario técnico y la respuesta a preguntas no preparadas.
+            </p>
+          </div>
+        </div>
+
+        <!-- Meta 3 -->
+        <div class="bento-card scroll-reveal">
+          <div>
+            <div class="tech-badge green" style="margin-bottom: 0.75rem;">META 03 // CONTINUIDAD PEDAGÓGICA</div>
+            <h3 class="bento-card-title">Proyectos integradores continuos</h3>
+            <p class="bento-card-desc" style="margin-top: 0.75rem; line-height: 1.65;">
+              Implementar prácticas enfocadas en pequeños proyectos sostenidos a lo largo del año para nutrir las muestras y evitar lagunas temporales que hagan perder el hábito en tareas clave como soldadura o diseño.
+            </p>
+          </div>
+        </div>
+
+        <!-- Meta 4 -->
+        <div class="bento-card scroll-reveal">
+          <div>
+            <div class="tech-badge orange" style="margin-bottom: 0.75rem;">META 04 // MATERIAL DIDÁCTICO</div>
+            <h3 class="bento-card-title">Guías prácticas con resolución</h3>
+            <p class="bento-card-desc" style="margin-top: 0.75rem; line-height: 1.65;">
+              Ampliar la documentación entregada en clase sumando guías de ejercicios resueltos y material práctico de apoyo para que los estudiantes ganen seguridad frente a exámenes y prácticas de laboratorio, tanto en mis materias como en el resto de la especialidad.
+            </p>
+          </div>
+        </div>
+
+        <!-- Meta 5 -->
+        <div class="bento-card scroll-reveal" style="grid-column: 1 / -1;">
+          <div>
+            <div class="tech-badge" style="margin-bottom: 0.75rem;">META 05 // SISTEMATIZACIÓN</div>
+            <h3 class="bento-card-title">Registro sistemático y archivo ordenado</h3>
+            <p class="bento-card-desc" style="margin-top: 0.75rem; line-height: 1.65;">
+              Estandarizar la captura fotográfica y en video de todas las prácticas áulicas, clasificándolas en el momento por fecha y actividad para evitar pérdidas de material y agilizar la curaduría de futuros portafolios.
+            </p>
+          </div>
+        </div>
+
+       
+
+      </div>
+
+      <!-- Panel de Conclusión Final y Regreso al Hub -->
+      <div class="bento-card scroll-reveal" style="text-align: center; align-items: center; padding: 3rem 2rem; margin-top: 2rem;">
+        <div class="tech-badge orange" style="margin-bottom: 0.5rem;">MEMORIA FINALIZADA // CICLO 2026</div>
+        <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary); max-width: 750px;">
+          "Enseñar electrónica es encender la chispa de la curiosidad técnica y demostrar que el fallo es solo el primer paso hacia una solución sólida."
+        </h3>
+        <p style="font-size: 0.95rem; color: var(--text-secondary); max-width: 600px; margin-top: 0.75rem;">
+          Matías Mansilla · Técnico Electrónico · Escuela Técnica Roberto Rocca
+        </p>
+
+        <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; justify-content: center;">
+          <a href="../index.html" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Volver al Hub de Portafolios</span>
+          </a>
+          <button class="btn btn-outline" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="19" x2="12" y2="5"></line>
+              <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+            <span>Volver al Inicio del Ciclo 2026</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       PIE DE PÁGINA INSTITUCIONAL
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div>
+          <div style="font-family: var(--font-mono); font-weight: 700; font-size: 0.95rem; color: var(--text-primary);">
+            MATÍAS MANSILLA // PORTAFOLIO CICLO LECTIVO 2026
+          </div>
+          <div style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.2rem;">
+            Escuela Técnica Roberto Rocca (Campana, Buenos Aires, Argentina)
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <span class="tech-badge orange">
+            <span class="status-dot"></span>
+            EJECUTÁNDOSE // CALIBRADO
+          </span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Escuela Técnica Roberto Rocca · Memoria Pedagógica. Desarrollado con HTML5 / CSS3 / Vanilla JS con ayuda de Google Antigravity y Google Gemini.</div>
+        <div style="color: var(--accent-orange);">SEÑAL ESTABLE // ONDA SENOIDAL SINCRONIZADA // 50Ω</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts Funcionales -->
+  <script src="../js/sine-wave.js"></script>
+  <script src="../js/lightbox.js"></script>
+  <script src="../js/scroll-effects.js"></script>
+</body>
+</html>
